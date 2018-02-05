@@ -14,8 +14,9 @@ defmodule YetAnotherChatWeb.Router do
 
     get "/", PageController, :index
     
+    get "/register", SessionController, :register_page    
     post "/register", SessionController, :register
-    
+
     get "/users/:name", UserController, :show
   end
 end

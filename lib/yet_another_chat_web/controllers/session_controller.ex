@@ -13,4 +13,6 @@ defmodule YetAnotherChatWeb.SessionController do
         |> render(:register, %{errors: changeset.errors})
     end
   end
+
+  def register_page(conn, _), do: render(conn, :register)
 end
