@@ -7,7 +7,10 @@ config :yet_another_chat, YetAnotherChatWeb.Endpoint,
   server: false
 
 # Print only warnings and errors during test
-config :logger, level: :warn
+config :logger,
+ level: :warn,
+ backend: [:console],
+ compile_time_purge_level: :debug
 
 # Configure your database
 config :yet_another_chat, YetAnotherChat.Repo,

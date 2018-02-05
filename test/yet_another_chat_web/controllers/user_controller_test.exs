@@ -13,7 +13,22 @@ defmodule YetAnotherChatWeb.UserControllerTest do
     conn = post(conn, "/users", %{})
     assert html_response(conn, 200) =~ "Name can&#39;t be blank"
     assert html_response(conn, 200) =~ "Email can&#39;t be blank"
-    assert html_response(conn, 200) =~ "Password can&#39;t be blank"    
+    assert html_response(conn, 200) =~ "Password can&#39;t be blank"
+    
+    conn = post(conn, "/users", %{"name" => "Roman"})
+    refute html_response(conn, 200) =~ "Name can&#39;t be blank"
+    assert html_response(conn, 200) =~ "Email can&#39;t be blank"
+    assert html_response(conn, 200) =~ "Password can&#39;t be blank"
+
+    conn = post(conn, "/users", %{"name" => "Roman", "email" => "some@email.com"})
+    refute html_response(conn, 200) =~ "Name can&#39;t be blank"
+    refute html_response(conn, 200) =~ "Email can&#39;t be blank"
+    assert html_response(conn, 200) =~ "Password can&#39;t be blank"
+
+    conn = post(conn, "/users", %{"name" => "", "email" => "", "password" => ""})
+    assert html_response(conn, 200) =~ "Name can&#39;t be blank"
+    assert html_response(conn, 200) =~ "Email can&#39;t be blank"
+    assert html_response(conn, 200) =~ "Password can&#39;t be blank"
   end
 
   test "can't create a user when name already exists"

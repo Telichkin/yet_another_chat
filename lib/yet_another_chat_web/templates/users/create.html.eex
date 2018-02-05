@@ -1,1 +1,4 @@
 <input></input>
+<%= for error_message <- empty_fields_to_error_messages(@empty_fields) do %>
+    <p class="alert alert-danger" role="alert"><%= error_message %></p>
+<% end %>
