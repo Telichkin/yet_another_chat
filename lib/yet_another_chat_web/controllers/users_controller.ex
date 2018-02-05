@@ -3,10 +3,15 @@ defmodule YetAnotherChatWeb.UsersController do
   alias YetAnotherChat.User
   require Logger
 
-  def create(conn, %{} = user) do
-    case User.create(user) do
-      {:ok, _} -> redirect(conn, to: page_path(YetAnotherChatWeb.Endpoint, :index))
-      {:error, changeset} -> render(conn, :create, %{errors: changeset.errors})
+  def create(conn, %{} = user_data) do
+    case User.create(user_data) do
+      {:ok, user} -> 
+        conn 
+        |> put_session(:current_user, user.name)
+        |> redirect(to: page_path(YetAnotherChatWeb.Endpoint, :index))
+      {:error, changeset} -> 
+        conn
+        |> render(:create, %{errors: changeset.errors})
     end
   end
 
