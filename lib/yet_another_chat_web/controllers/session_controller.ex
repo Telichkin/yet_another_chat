@@ -1,9 +1,8 @@
-defmodule YetAnotherChatWeb.UsersController do
+defmodule YetAnotherChatWeb.SessionController do
   use YetAnotherChatWeb, :controller
   alias YetAnotherChat.User
-  require Logger
 
-  def create(conn, %{} = user_data) do
+  def register(conn, %{} = user_data) do
     case User.create(user_data) do
       {:ok, user} -> 
         conn 
@@ -11,12 +10,7 @@ defmodule YetAnotherChatWeb.UsersController do
         |> redirect(to: page_path(YetAnotherChatWeb.Endpoint, :index))
       {:error, changeset} -> 
         conn
-        |> render(:create, %{errors: changeset.errors})
+        |> render(:register, %{errors: changeset.errors})
     end
-  end
-
-  def show(conn, %{"name" => name}) do
-    conn
-    |> render(:show, [name: name])
   end
 end

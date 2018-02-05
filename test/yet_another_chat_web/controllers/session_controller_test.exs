@@ -1,8 +1,8 @@
-defmodule YetAnotherChatWeb.UserControllerTest do
+defmodule YetAnotherChatWeb.SessionControllerTest do
   use YetAnotherChatWeb.ConnCase
 
   test "create a user with name, email and password", %{conn: conn} do
-    conn = post(conn, "/users", %{"name" => "Roman", "email" => "some@mail.com", "password" => "StrongPWD!"})
+    conn = post(conn, "/register", %{"name" => "Roman", "email" => "some@mail.com", "password" => "StrongPWD!"})
     assert redirected_to(conn) =~ "/"
     assert get_session(conn, :current_user)
 
@@ -11,12 +11,12 @@ defmodule YetAnotherChatWeb.UserControllerTest do
   end
 
   test "can't create a user without email or name or password", %{conn: conn} do
-    conn = post(conn, "/users", %{"name" => "Roman"})
+    conn = post(conn, "/register", %{"name" => "Roman"})
     refute html_response(conn, 200) =~ "Name can&#39;t be blank"
     assert html_response(conn, 200) =~ "Email can&#39;t be blank"
     assert html_response(conn, 200) =~ "Password can&#39;t be blank"
 
-    conn = post(conn, "/users", %{"name" => "", "email" => "", "password" => ""})
+    conn = post(conn, "/register", %{"name" => "", "email" => "", "password" => ""})
     assert html_response(conn, 200) =~ "Name can&#39;t be blank"
     assert html_response(conn, 200) =~ "Email can&#39;t be blank"
     assert html_response(conn, 200) =~ "Password can&#39;t be blank"
@@ -25,16 +25,16 @@ defmodule YetAnotherChatWeb.UserControllerTest do
   end
 
   test "can't create a user when name already exists", %{conn: conn} do
-    conn = post(conn, "/users", %{"name" => "Roman", "email" => "some@mail.com", "password" => "StrongPWD!"})
+    conn = post(conn, "/register", %{"name" => "Roman", "email" => "some@mail.com", "password" => "StrongPWD!"})
     
-    conn = post(conn, "/users", %{"name" => "Roman", "email" => "other@mail.com", "password" => "weakPWD!"})
+    conn = post(conn, "/register", %{"name" => "Roman", "email" => "other@mail.com", "password" => "weakPWD!"})
     assert html_response(conn, 200) =~ "Name has already been taken"
   end
 
   test "can't create a user when email already taken", %{conn: conn} do
-    conn = post(conn, "/users", %{"name" => "Roman", "email" => "some@mail.com", "password" => "StrongPWD!"})
+    conn = post(conn, "/register", %{"name" => "Roman", "email" => "some@mail.com", "password" => "StrongPWD!"})
     
-    conn = post(conn, "/users", %{"name" => "Drum", "email" => "some@mail.com", "password" => "weakPWD!"})
+    conn = post(conn, "/register", %{"name" => "Drum", "email" => "some@mail.com", "password" => "weakPWD!"})
     assert html_response(conn, 200) =~ "Email has already been taken"
   end
 end
