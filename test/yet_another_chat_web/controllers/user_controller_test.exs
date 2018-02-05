@@ -37,4 +37,11 @@ defmodule YetAnotherChatWeb.UserControllerTest do
     conn = post(conn, "/users", %{"name" => "Roman", "email" => "other@mail.com", "password" => "weakPWD!"})
     assert html_response(conn, 200) =~ "Name has already been taken"
   end
+
+  test "can't create a user when email already taken", %{conn: conn} do
+    conn = post(conn, "/users", %{"name" => "Roman", "email" => "some@mail.com", "password" => "StrongPWD!"})
+    
+    conn = post(conn, "/users", %{"name" => "Drum", "email" => "some@mail.com", "password" => "weakPWD!"})
+    assert html_response(conn, 200) =~ "Email has already been taken"
+  end
 end

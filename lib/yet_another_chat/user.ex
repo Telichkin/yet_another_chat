@@ -23,5 +23,6 @@ defmodule YetAnotherChat.User do
     |> cast(user_data, [:name, :email, :password])
     |> validate_required([:name, :email, :password])
     |> unique_constraint(:name)
+    |> unique_constraint(:email)
   end
 end
