@@ -10,9 +10,14 @@ defmodule YetAnotherChatWeb.AuthController do
         |> redirect(to: page_path(YetAnotherChatWeb.Endpoint, :index))
       {:error, changeset} -> 
         conn
-        |> render(:register, %{errors: changeset.errors, changeset: changeset})
+        |> render(:register, %{errors: changeset.errors})
     end
   end
 
   def register_page(conn, _), do: render(conn, :register, %{errors: []})
+
+  def logout(conn, _) do
+    conn
+    |> delete_session(:current_user)
+  end
 end
