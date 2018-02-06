@@ -1,4 +1,4 @@
-<h2>Login</h2>
+<h2>Registration</h2>
 
 <%= form_for @conn, session_path(@conn, :register), [name: :session], fn(form) -> %>
     <div class="form-group">

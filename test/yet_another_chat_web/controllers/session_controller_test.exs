@@ -37,4 +37,12 @@ defmodule YetAnotherChatWeb.SessionControllerTest do
     conn = post(conn, "/register", %{"name" => "Drum", "email" => "some@mail.com", "password" => "weakPWD!"})
     assert html_response(conn, 200) =~ "Email has already been taken"
   end
+
+  test "register page contains name, email and password", %{conn: conn} do
+    conn = get(conn, "/register")
+    assert html_response(conn, 200) =~ "Registration"
+    assert html_response(conn, 200) =~ "Name"
+    assert html_response(conn, 200) =~ "Email"
+    assert html_response(conn, 200) =~ "Password"    
+  end
 end
