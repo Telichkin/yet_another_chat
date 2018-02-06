@@ -16,8 +16,15 @@ defmodule YetAnotherChatWeb.AuthController do
 
   def register_page(conn, _), do: render(conn, :register, %{errors: []})
 
-  def logout(conn, _) do
-    conn
-    |> delete_session(:current_user)
+  def login(conn, %{"login" => login, "password" => _}) do
+    case User.find_name_by_login(login) do
+      {:ok, name} ->    
+        conn
+        |> put_session(:current_user, name)
+      :error ->
+        conn
+    end
   end
+
+  def logout(conn, _), do: clear_session(conn)
 end
