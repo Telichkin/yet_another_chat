@@ -1,4 +1,4 @@
-defmodule YetAnotherChatWeb.SessionController do
+defmodule YetAnotherChatWeb.AuthController do
   use YetAnotherChatWeb, :controller
   alias YetAnotherChat.User
 

@@ -1,4 +1,4 @@
-defmodule YetAnotherChatWeb.SessionView do
+defmodule YetAnotherChatWeb.AuthView do
     use YetAnotherChatWeb, :view
 
     def errors_to_error_messages(errors) do
