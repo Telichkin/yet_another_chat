@@ -10,9 +10,9 @@ defmodule YetAnotherChatWeb.AuthController do
         |> redirect(to: page_path(YetAnotherChatWeb.Endpoint, :index))
       {:error, changeset} -> 
         conn
-        |> render(:register, %{errors: changeset.errors})
+        |> render(:register, %{errors: changeset.errors, changeset: changeset})
     end
   end
 
-  def register_page(conn, _), do: render(conn, :register)
+  def register_page(conn, _), do: render(conn, :register, %{errors: []})
 end
