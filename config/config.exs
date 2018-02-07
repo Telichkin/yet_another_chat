@@ -7,8 +7,7 @@ use Mix.Config
 
 # General application configuration
 config :yet_another_chat,
-  ecto_repos: [YetAnotherChat.Repo],
-  password_salt: "123"
+  ecto_repos: [YetAnotherChat.Repo]
 
 # Configures the endpoint
 config :yet_another_chat, YetAnotherChatWeb.Endpoint,

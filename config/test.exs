@@ -20,3 +20,6 @@ config :yet_another_chat, YetAnotherChat.Repo,
   database: "yet_another_chat_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+# Configure encryption
+config :bcrypt_elixir, :log_rounds, 4

@@ -5,8 +5,6 @@ defmodule YetAnotherChat.User do
   alias YetAnotherChat.Repo
   alias YetAnotherChat.User
 
-  @password_salt Application.get_env(:yet_another_chat, :password_salt)
-
   schema "users" do
     field :name, :string
     field :email, :string
