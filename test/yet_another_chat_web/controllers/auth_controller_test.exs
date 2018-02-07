@@ -80,13 +80,19 @@ defmodule YetAnotherChatWeb.AuthControllerTest do
       assert get_session(conn, :current_user) === "Roman"
     end
 
-    test "correct email and password", %{conn: conn} do
+    test "email is case-insensetive", %{conn: conn} do
       conn = post(conn, "/login", %{"login" => "sOmE@mail.com", "password" => "StrongPWD!"})
       assert get_session(conn, :current_user) === "Roman"
     end
 
     test "can not login with incorrect info", %{conn: conn} do
       conn = post(conn, "/login", %{"login" => "Namor", "password" => "StrongPWD!"})
+      refute get_session(conn, :current_user)
+
+      conn = post(conn, "/login", %{"login" => "Roman", "password" => "WeakPWD"})
+      refute get_session(conn, :current_user)
+
+      conn = post(conn, "/login", %{"login" => "other@mail.com", "password" => "StrongPWD!"})
       refute get_session(conn, :current_user)
     end
   end

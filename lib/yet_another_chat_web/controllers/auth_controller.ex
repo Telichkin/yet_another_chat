@@ -16,13 +16,13 @@ defmodule YetAnotherChatWeb.AuthController do
 
   def register_page(conn, _), do: render(conn, :register, %{errors: []})
 
-  def login(conn, %{"login" => login, "password" => _}) do
-    case User.find_name_by_login(login) do
-      {:ok, name} ->    
+  def login(conn, %{"login" => login, "password" => password}) do
+    case User.find_name_by_login_and_password(login, password) do
+      nil ->
+        conn
+      name ->    
         conn
         |> put_session(:current_user, name)
-      :error ->
-        conn
     end
   end
 
