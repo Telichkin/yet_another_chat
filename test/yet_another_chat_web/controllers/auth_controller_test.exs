@@ -4,7 +4,7 @@ defmodule YetAnotherChatWeb.AuthControllerTest do
   describe "registration" do
     test "create a user with name, email and password", %{conn: conn} do
       conn = post(conn, "/register", %{"name" => "Roman", "email" => "some@mail.com", "password" => "StrongPWD!"})
-      assert redirected_to(conn) =~ "/"
+      assert redirected_to(conn) === "/"
       assert get_session(conn, :current_user)
 
       conn = get(conn, "/users/Roman")
@@ -73,6 +73,7 @@ defmodule YetAnotherChatWeb.AuthControllerTest do
     test "can login with correct name and password", %{conn: conn} do
       conn = post(conn, "/login", %{"login" => "Roman", "password" => "StrongPWD!"})
       assert get_session(conn, :current_user) === "Roman"
+      assert redirected_to(conn, 302) === "/"
     end    
 
     test "can login with correct email and password", %{conn: conn} do
@@ -88,12 +89,24 @@ defmodule YetAnotherChatWeb.AuthControllerTest do
     test "can not login with incorrect info", %{conn: conn} do
       conn = post(conn, "/login", %{"login" => "Namor", "password" => "StrongPWD!"})
       refute get_session(conn, :current_user)
+      assert html_response(conn, 200) =~ "Invalid login or password"
 
       conn = post(conn, "/login", %{"login" => "Roman", "password" => "WeakPWD"})
       refute get_session(conn, :current_user)
 
       conn = post(conn, "/login", %{"login" => "other@mail.com", "password" => "StrongPWD!"})
       refute get_session(conn, :current_user)
+    end
+
+    test "login redirect to the previous page", %{conn: conn} do
+      conn = post(conn, "/login?previous-page=/users/Name", %{"login" => "sOmE@mail.com", "password" => "StrongPWD!"})
+      assert redirected_to(conn, 302) === "/users/Name"
+    end
+
+    test "login render form on get", %{conn: conn} do
+      conn = get(conn, "/login")
+      assert html_response(conn, 200) =~ "Login"
+      assert html_response(conn, 200) =~ "Password"      
     end
   end
 end

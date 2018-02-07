@@ -2,8 +2,7 @@ defmodule YetAnotherChat.User do
   use Ecto.Schema
   import Ecto.Changeset
   import Ecto.Query
-  alias YetAnotherChat.Repo
-  alias YetAnotherChat.User
+  alias YetAnotherChat.{Repo, User}
 
   schema "users" do
     field :name, :string
