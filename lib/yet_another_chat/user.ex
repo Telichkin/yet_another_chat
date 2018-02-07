@@ -26,23 +26,18 @@ defmodule YetAnotherChat.User do
   end
 
   defp hash_password(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
-    put_change(changeset, :password, encrypt_password(password))
+    put_change(changeset, :password, Bcrypt.hash_pwd_salt(password))
   end
   defp hash_password(changeset), do: changeset
 
   def find_name_by_login_and_password(login, password) when is_bitstring(login) and is_bitstring(password) do
-    encrypted_password = encrypt_password(password)
-    Repo.one(
-      from u in User, 
-      where: (u.name == ^login or
-              fragment("lower(?)", u.email) == fragment("lower(?)", ^login)) and
-              u.password == ^encrypted_password,
-      select: u.name
-    )
-  end
-
-  defp encrypt_password(raw_password) when is_bitstring(raw_password) do
-    <<x::256-big-unsigned-integer>> = :crypto.hash(:sha256, @password_salt <> raw_password)
-    to_string(:erlang.integer_to_list(x, 16))
+    user =  Repo.one(from u in User, 
+                     where: u.name == ^login or
+                            fragment("lower(?)", u.email) == fragment("lower(?)", ^login))
+    cond do
+      user === nil -> nil
+      Bcrypt.verify_pass(password, user.password) === true -> user.name
+      true -> nil
+    end
   end
 end
