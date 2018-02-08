@@ -1,6 +1,10 @@
 defmodule YetAnotherChatWeb.ErrorView do
   use YetAnotherChatWeb, :view
 
+  def render("403.html", %{error: error}) do
+    error
+  end
+
   def render("404.html", _assigns) do
     "Page not found"
   end
