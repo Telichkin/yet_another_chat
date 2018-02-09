@@ -14,10 +14,10 @@ defmodule YetAnotherChatWeb.Router do
 
     get "/", PageController, :index
     
-    get "/register", AuthController, :show_register    
+    get "/register", AuthController, :register    
     post "/register", AuthController, :register
     
-    get "/login", AuthController, :show_login
+    get "/login", AuthController, :login
     post "/login", AuthController, :login    
     
     post "/logout", AuthController, :logout
