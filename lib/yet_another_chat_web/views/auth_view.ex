@@ -5,7 +5,7 @@ defmodule YetAnotherChatWeb.AuthView do
         case Keyword.fetch(errors, field) do
             {:ok, message} -> 
                 error_message = humanize(field) <> " " <> translate_error(message)
-                content_tag(:span, error_message, [class: "help-block"])
+                content_tag(:span, error_message, [class: "alert alert-error"])
             :error -> 
                 html_escape("")    
         end

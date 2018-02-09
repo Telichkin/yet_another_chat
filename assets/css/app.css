@@ -1,1 +1,66 @@
-/* This file is for your main application css. */
+html {
+    font-family: 'Roboto', Arial, Sans-Serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+h2.form-title {
+    text-align: center;
+    font-weight: 500;
+}
+
+div.form-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+}
+
+div.form-container > form {
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+div.form-group {
+    padding: 10px 0;
+}
+
+div.form-group > label {
+    display: block;
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+
+div.form-group > input {
+    width: 300px;
+    padding: 5px;
+}
+
+div.form-group > .btn {
+    padding: 5px 10px;
+}
+
+.btn-primary {
+    background-color: #0366d6;
+    color: white;
+    border-color: #0366d6;
+}
+
+.btn-primary:hover {
+    background-color: #1985ff;
+    color: white;
+    border-color: #1985ff;
+}
+
+.alert {
+    display: block;
+    font-size: 85%;
+    padding: 9px;
+    margin-top: 5px;
+}
+
+.alert-error {
+    color: #86181d;
+    background-color: #ffdce0;
+}

@@ -1,22 +1,23 @@
-<h2>Registration</h2>
-
-<%= form_for @conn, auth_path(@conn, :register), [name: :session], fn(form) -> %>
-    <div class="form-group">
-        <label>Name</label>
-        <%= text_input(form, :name, class: "form-control") %>
-        <%= help_tag(@errors, :name) %>
-    </div>
-    <div class="form-group">
-        <label>Email</label>
-        <%= text_input(form, :email, class: "form-control") %>
-        <%= help_tag(@errors, :email) %>
-    </div>
-    <div class="form-group">
-        <label>Password</label>
-        <%= password_input(form, :password, class: "form-control") %>
-        <%= help_tag(@errors, :password) %>
-    </div>
-    <div class="form-group">
-        <%= submit("Register", class: "btn btn-primary") %>
-    </div>
-<% end %>
+<div class="form-container">
+    <h2 class="form-title">Registration</h2>    
+    <%= form_for @conn, auth_path(@conn, :register), [name: :register, class: "register-form"], fn(form) -> %>
+        <div class="form-group">
+            <label>Name</label>
+            <%= text_input(form, :name, class: "form-control") %>
+            <%= help_tag(@errors, :name) %>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <%= text_input(form, :email, class: "form-control") %>
+            <%= help_tag(@errors, :email) %>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <%= password_input(form, :password, class: "form-control") %>
+            <%= help_tag(@errors, :password) %>
+        </div>
+        <div class="form-group">
+            <%= submit("Register", class: "btn btn-primary") %>
+        </div>
+    <% end %>
+</div>       
