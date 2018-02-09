@@ -1,11 +1,15 @@
 html {
     font-family: 'Roboto', Arial, Sans-Serif;
+    background: #f7f7f7;
 }
 
 button {
     cursor: pointer;
 }
 
+/*****
+Forms
+*****/
 h2.form-title {
     text-align: center;
     font-weight: 500;
@@ -63,4 +67,132 @@ div.form-group > .btn {
 .alert-error {
     color: #86181d;
     background-color: #ffdce0;
+}
+
+/****
+Chat
+****/
+div.chat-container {
+    display: flex;
+    position: fixed;
+    flex-direction: row;
+    max-width: 1000px;
+    height: 90%;
+    background: white;    
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+section.chat-room {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+}
+
+div.chat-room-info {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #5581a3;
+    color: white;
+}
+
+div.chat-room-avatar > img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: white;
+}
+
+div.chat-room-title {
+    margin: 0 auto;
+}
+
+div.chat-room-members {
+    font-size: 85%;
+    color: #b9cfe3;
+    text-align: center;
+}
+
+div.chat-room-messages {
+    flex: 1 0 auto;
+    padding-top: 10px;
+}
+
+div.chat-room-input-container {
+    margin: 0 10px 10px 10px;
+}
+
+div.chat-room-input {
+    width: 100%;
+    margin: 0;
+    border: none;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #f7f7f7;   
+    max-height: 200px;
+    resize: none;
+    overflow-x: auto;
+    font-size: 90%;
+}
+
+div.chat-room-input:focus {
+    outline: none;
+}
+
+[contenteditable=true]:empty:before{
+    content: attr(placeholder);
+    display: block;
+  }
+
+section.info-board {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+div.settings {
+    background: #5581a3;
+    color: white;
+    height: 52px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.room-list {
+    border-left: 2px solid #E9EBED;
+    flex: 1 0 auto;
+}
+
+div.room {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px;
+    padding: 5px;
+    background: #f1f1f1;
+}
+
+div.room.room-selected {
+    border: 1px solid #5480a3;
+}
+
+div.room-avatar > img {
+    height: 24px;
+    margin-left: 5px;
+    border-radius: 50%;
+    background: white;
+}
+
+div.room-title {
+    margin: 0 auto;
+    font-size: 85%;
+}
+
+div.room-members {
+    text-align: center;
+    font-size: 80%;
 }

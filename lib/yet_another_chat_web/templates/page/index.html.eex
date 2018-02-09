@@ -1,2 +1,82 @@
-<div>
+<div class="chat-container">
+    <section class="chat-room">
+        <div class="chat-room-info">
+            <div class="chat-room-avatar">
+                <img src="https://dnsimple.com/assets/pages/landing/elixir-811421c2a23a1a9c644968ecb0db6c955a5cdd856763be5455cdba7ec406029a.svg"/>
+            </div>
+            <div class="chat-room-title">
+                <div class="chat-room-name">
+                    Elixir programmers
+                </div>
+                <div class="chat-room-members">
+                    23 members
+                </div>
+            </div>
+        </div>
+        <div class="chat-room-messages">
+            <div class="message my-message">
+                <div class="message-info">
+                    <span class="message-author">Roman</span>
+                    <span class="message-date">18:40</span>
+                </div>
+                Hi averyone in this chat!
+            </div>
+            <div class="message">
+                <div class="message-info">
+                    <span class="message-author">Julia</span>
+                    <span class="message-date">18:40</span>
+                </div>
+                What's up Roman!? 
+            </div>
+        </div>
+        <div class="chat-room-input-container">
+            <div class="chat-room-input" contenteditable placeholder="Write your message..."></textarea>
+        </div>
+    </section>
+    <section class="info-board">
+        <div class="settings">
+            Yet Another Chat
+        </div>
+        <div class="room-list">
+            <div class="room room-selected">
+                <div class="room-avatar">
+                    <img src="https://dnsimple.com/assets/pages/landing/elixir-811421c2a23a1a9c644968ecb0db6c955a5cdd856763be5455cdba7ec406029a.svg"/>
+                </div>
+                <div class="room-title">
+                    <div class="room-name">
+                        Elixir programmers  
+                    </div>
+                    <div class="room-members">
+                        23 members
+                    </div>              
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-avatar">
+                    <img src="https://www.python.org/static/opengraph-icon-200x200.png"/>
+                </div>
+                <div class="room-title">
+                    <div class="room-name">
+                        Python programmers  
+                    </div>
+                    <div class="room-members">
+                        1015 members
+                    </div>              
+                </div>
+            </div>   
+            <div class="room">
+                <div class="room-avatar">
+                    <img src="https://pluralsight.imgix.net/paths/path-icons/nodejs-601628d09d.png"/>
+                </div>
+                <div class="room-title">
+                    <div class="room-name">
+                        JavaScript programmers  
+                    </div>
+                    <div class="room-members">
+                        3791 members
+                    </div>              
+                </div>
+            </div> 
+        </div>
+    </section>
 </div>
