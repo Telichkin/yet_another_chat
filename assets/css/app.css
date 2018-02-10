@@ -117,6 +117,10 @@ div.chat-room-title {
     margin: 0 auto;
 }
 
+div.chat-room-name {
+    text-align: center;
+}
+
 div.chat-room-members {
     font-size: 85%;
     color: #b9cfe3;
@@ -235,6 +239,10 @@ div.room-title {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+
+div.room-name {
+    text-align: center;
 }
 
 div.room-members {
