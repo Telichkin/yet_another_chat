@@ -15,15 +15,17 @@
                 </div>
             </div>
             <div class="chat-room-messages">
-                <div class="message-container my-message">
-                    <div class="message">
-                        <div class="message-info">
-                            <span class="message-author">Roman</span>
-                            <span class="message-date">18:40</span>
+                <%= for message <- @messages do %>
+                    <div class="message-container my-message">
+                        <div class="message">
+                            <div class="message-info">
+                                <span class="message-author">Roman</span>
+                                <span class="message-date">18:40</span>
+                            </div>
+                            <%= message["text"] %>
                         </div>
-                        First Message Second Message
                     </div>
-                </div>
+                <% end %>
             </div>
             <div class="chat-room-input-container">
                 <div class="chat-room-input" contenteditable placeholder="Write your message..."></textarea>
