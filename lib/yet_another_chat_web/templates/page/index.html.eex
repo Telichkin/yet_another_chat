@@ -1,6 +1,6 @@
 <div class="chat-container">
     <div class="chat">
-        <section class="chat-room">
+        <section class="chat-room" data-controller="chat-room">
             <div class="chat-room-info">
                 <div class="chat-room-avatar">
                     <img src="<%= static_path(@conn, "/images/elixir.svg") %>"/>
@@ -14,13 +14,13 @@
                     </div>
                 </div>
             </div>
-            <div class="chat-room-messages">
+            <div class="chat-room-messages" data-target="chat-room.allMessages">
                 <%= for message <- @messages do %>
                     <div class="message-container my-message">
                         <div class="message">
                             <div class="message-info">
-                                <span class="message-author">Roman</span>
-                                <span class="message-date">18:40</span>
+                                <span class="message-author"><%= message["author"] %></span>
+                                <span class="message-date"><%= message["time"] %></span>
                             </div>
                             <%= message["text"] %>
                         </div>
@@ -28,7 +28,7 @@
                 <% end %>
             </div>
             <div class="chat-room-input-container">
-                <div class="chat-room-input" contenteditable placeholder="Write your message..."></textarea>
+                <div class="chat-room-input" contenteditable data-target="chat-room.message" data-action="keypress->chat-room#sendMessage"></textarea>
             </div>
         </section>
         <section class="info-board">

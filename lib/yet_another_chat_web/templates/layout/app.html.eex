@@ -8,6 +8,8 @@
     <meta name="author" content="">
 
     <title>Yet Another Chat</title>
+
+    <script src="<%= static_path(@conn, "/js/app.js") %>" defer></script>    
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=cyrillic" rel="stylesheet">
   </head>
@@ -22,6 +24,5 @@
 
     </div> <!-- /container -->
     <script>window.userToken = "<%= assigns[:user_token] %>";</script>
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

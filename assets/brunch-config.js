@@ -20,7 +20,10 @@ exports.config = {
       // }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: "css/app.css",
+      order: {
+        after: ["web/static/css/app.css"] // concat app.css last
+      }
     },
     templates: {
       joinTo: "js/app.js"
@@ -45,6 +48,8 @@ exports.config = {
   // Configure your plugins
   plugins: {
     babel: {
+      presets: ["latest"],
+      plugins: ["transform-class-properties"],
       // Do not use ES6 compiler in vendor code
       ignore: [/vendor/]
     }

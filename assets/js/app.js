@@ -1,8 +1,11 @@
-// Import dependencies
-// If you no longer want to use a dependency, remember
-// to also remove its path from "config.paths.watched".
 import "phoenix_html";
+import { Application } from "stimulus";
+import Turbolinks from "turbolinks";
 
-// Import local files
 import socket from "./socket";
-import channel from "./chat";
+
+import ChatRoomController from "./chat_room_controller";
+
+Turbolinks.start();
+const application = Application.start();
+application.register("chat-room", ChatRoomController);
