@@ -5,6 +5,7 @@ defmodule YetAnotherChatWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
+    plug :fetch_user
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -23,5 +24,12 @@ defmodule YetAnotherChatWeb.Router do
     post "/logout", AuthController, :logout
 
     get "/users/:name", UserController, :show
+  end
+
+  defp fetch_user(conn, _) do
+    case get_session(conn, :current_user) do
+      nil -> assign(conn, :user, :anon)
+      name -> assign(conn, :user, name)
+    end
   end
 end

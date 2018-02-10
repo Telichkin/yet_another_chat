@@ -80,7 +80,8 @@ div.chat-container {
     height: 90%;
     background: white;    
     left: 50%;
-    transform: translateX(-50%);
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
 }
 
 section.chat-room {
@@ -117,7 +118,41 @@ div.chat-room-members {
 
 div.chat-room-messages {
     flex: 1 0 auto;
-    padding-top: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: scroll;
+}
+
+div.message-container {
+    display: flex;
+}
+
+div.message-container.my-message {
+    flex-direction: row-reverse;
+}
+
+div.message {
+    padding: 10px;
+    margin: 5px 0;
+    display: inline-block;
+    max-width: 85%;
+    font-size: 93%;
+}
+
+div.message-info {
+    margin-bottom: 5px;
+}
+
+span.message-author {
+    font-size: 90%;  
+    color: #414b50;
+}
+
+span.message-date {
+    font-size: 75%;
+    margin-left: 3px;
+    color: #5f5f5f;
 }
 
 div.chat-room-input-container {
@@ -183,6 +218,7 @@ div.room.room-selected {
 div.room-avatar > img {
     height: 24px;
     margin-left: 5px;
+    margin-right: 10px;
     border-radius: 50%;
     background: white;
 }
@@ -190,6 +226,9 @@ div.room-avatar > img {
 div.room-title {
     margin: 0 auto;
     font-size: 85%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 div.room-members {

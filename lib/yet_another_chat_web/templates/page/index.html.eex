@@ -14,19 +14,23 @@
             </div>
         </div>
         <div class="chat-room-messages">
-            <div class="message my-message">
-                <div class="message-info">
-                    <span class="message-author">Roman</span>
-                    <span class="message-date">18:40</span>
+            <div class="message-container">
+                <div class="message">
+                    <div class="message-info">
+                        <span class="message-author">Julia</span>
+                        <span class="message-date">18:40</span>
+                    </div>
+                    Очень мало из этого списка можно узнать заранее о компании перед устройством на работу. Но учитывая порядок приоритетов, можно легко сравнить текущую работу и другую потенциальную, зная размер зарплаты. Иногда можно пожертвовать частью второго и третьего, ради хорошего оклада. Разумеется, для каждого этот баланс свой.
                 </div>
-                Hi averyone in this chat!
             </div>
-            <div class="message">
-                <div class="message-info">
-                    <span class="message-author">Julia</span>
-                    <span class="message-date">18:40</span>
+            <div class="message-container my-message">
+                <div class="message">
+                    <div class="message-info">
+                        <span class="message-author">Roman</span>
+                        <span class="message-date">18:40</span>
+                    </div>
+                    Hi averyone in this chat!
                 </div>
-                What's up Roman!? 
             </div>
         </div>
         <div class="chat-room-input-container">

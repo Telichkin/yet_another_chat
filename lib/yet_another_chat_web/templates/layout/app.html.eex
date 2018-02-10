@@ -16,9 +16,6 @@
     <div class="container">
       <header class="header">
       </header>
-
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
