@@ -2,7 +2,7 @@ defmodule YetAnotherChatWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", YetAnotherChatWeb.RoomChannel
+  channel "public_channel:*", YetAnotherChatWeb.PublicChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
@@ -19,8 +19,15 @@ defmodule YetAnotherChatWeb.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
-  def connect(_params, socket) do
-    {:ok, socket}
+  def connect(%{"token" => token}, socket) do
+    two_weeks_in_seconds = 1209600
+    salt = Application.get_env(:yet_another_chat, YetAnotherChatWeb.Endpoint)[:secret_key_base]
+    case Phoenix.Token.verify(socket, salt, token, max_age: two_weeks_in_seconds) do
+      {:ok, user_name} ->
+        {:ok, assign(socket, :user, user_name)}
+      {:error, _reason} ->
+        :error
+    end
   end
 
   # Socket id's are topics that allow you to identify all sockets for a given user:

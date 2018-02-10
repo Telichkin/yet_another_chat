@@ -74,14 +74,20 @@ Chat
 ****/
 div.chat-container {
     display: flex;
-    position: fixed;
     flex-direction: row;
-    max-width: 1000px;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+div.chat {
+    display: flex;
+    flex-direction: row;
     height: 90%;
-    background: white;    
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    background: white;   
+    overflow: auto; 
 }
 
 section.chat-room {
@@ -92,6 +98,7 @@ section.chat-room {
 
 div.chat-room-info {
     display: flex;
+    height: 52px;
     padding: 10px;
     align-items: center;
     justify-content: flex-start;
@@ -117,10 +124,8 @@ div.chat-room-members {
 }
 
 div.chat-room-messages {
-    flex: 1 0 auto;
+    flex: 1;
     padding: 10px;
-    display: flex;
-    flex-direction: column-reverse;
     overflow-y: scroll;
 }
 
@@ -199,7 +204,8 @@ div.settings {
 
 div.room-list {
     border-left: 2px solid #E9EBED;
-    flex: 1 0 auto;
+    flex: 1;
+    overflow-y: scroll;
 }
 
 div.room {

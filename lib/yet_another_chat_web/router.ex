@@ -6,6 +6,7 @@ defmodule YetAnotherChatWeb.Router do
     plug :fetch_session
     plug :fetch_flash
     plug :fetch_user
+    plug :set_user_token
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -31,5 +32,12 @@ defmodule YetAnotherChatWeb.Router do
       nil -> assign(conn, :user, :anon)
       name -> assign(conn, :user, name)
     end
+  end
+
+  defp set_user_token(%{assigns: %{user: :anon}} = conn, _), do: conn
+  defp set_user_token(%{assigns: %{user: name}} = conn, _) do
+    salt = Application.get_env(:yet_another_chat, YetAnotherChatWeb.Endpoint)[:secret_key_base]
+    token = Phoenix.Token.sign(conn, salt, name)
+    assign(conn, :user_token, token)
   end
 end
