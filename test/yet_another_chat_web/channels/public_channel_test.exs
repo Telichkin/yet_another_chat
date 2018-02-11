@@ -14,7 +14,7 @@ defmodule YetAnotherChatWeb.PublicChannelTest do
     test "can send message to the public channel", %{socket: socket} do
         push(socket, "new message", %{"text" => "Hello, World!"})
 
-        assert_broadcast("new message", %{"html" => html})
+        assert_push("new message", %{"html" => html})
         assert html =~ "Roman"
         assert html =~ "Hello, World"
         assert html =~ "<div class=\"message-container my-message\">"

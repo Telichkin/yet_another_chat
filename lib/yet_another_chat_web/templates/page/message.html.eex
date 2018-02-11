@@ -1,8 +1,8 @@
-<div class="message-container my-message">
+<div class="message-container <%= if @message["is_author"], do: "my-message" %>">
     <div class="message">
         <div class="message-info">
             <span class="message-author"><%= @message["author"] %></span>
-            <span class="message-date"><%= humanize_time(@message["time"]) %></span>
+            <span class="message-date"><%= @message["time"] %></span>
         </div>
         <%= @message["text"] %>
     </div>
