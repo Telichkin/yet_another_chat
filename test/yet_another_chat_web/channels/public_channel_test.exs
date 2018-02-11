@@ -14,18 +14,18 @@ defmodule YetAnotherChatWeb.PublicChannelTest do
     test "can send message to the public channel", %{socket: socket} do
         push(socket, "new message", %{"text" => "Hello, World!"})
 
-        assert_broadcast("new message", %{"text" => "Hello, World!", "author" => "Roman", "time" => now})
-        
-        {:ok, actual_now, _} = DateTime.from_iso8601(now)
-        assert DateTime.diff(DateTime.utc_now(), actual_now) < 1
+        assert_broadcast("new message", %{"html" => html})
+        assert html =~ "Roman"
+        assert html =~ "Hello, World"
+        assert html =~ "<div class=\"message-container my-message\">"
     end
 
     test "save broadcasted messages", %{socket: socket, conn: conn} do
         push(socket, "new message", %{"text" => "First Message"})
         push(socket, "new message", %{"text" => "Second Message"})
 
-        assert_broadcast("new message", %{"text" => "First Message"})
-        assert_broadcast("new message", %{"text" => "Second Message"})        
+        assert_broadcast("new message", _)
+        assert_broadcast("new message", _)        
 
         conn = get(conn, "/")
 

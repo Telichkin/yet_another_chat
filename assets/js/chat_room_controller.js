@@ -11,9 +11,18 @@ export default class extends Controller {
     }
 
     listenNewMessages() {
-        channel.on("new message", () => Turbolinks.visit("/"));
+        channel.on("new message", ({html: htmlMessage}) => {
+            this.appendMessage(htmlMessage);
+            this.scrollToLastMessage();
+        });
     }
     
+    appendMessage(htmlMessage) {
+        let tempDiv = document.createElement("div");
+        tempDiv.innerHTML = htmlMessage.trim();
+        this.allMessagesTarget.appendChild(tempDiv.firstChild);
+    }
+
     sendMessage(event) {
         const enterPressed = event.keyCode === 13;
         if (enterPressed) {

@@ -16,15 +16,7 @@
             </div>
             <div class="chat-room-messages" data-target="chat-room.allMessages">
                 <%= for message <- @messages do %>
-                    <div class="message-container my-message">
-                        <div class="message">
-                            <div class="message-info">
-                                <span class="message-author"><%= message["author"] %></span>
-                                <span class="message-date"><%= message["time"] %></span>
-                            </div>
-                            <%= message["text"] %>
-                        </div>
-                    </div>
+                    <%= render("message.html", message: message) %>
                 <% end %>
             </div>
             <div class="chat-room-input-container">
