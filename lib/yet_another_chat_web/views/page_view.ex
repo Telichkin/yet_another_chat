@@ -1,7 +1,7 @@
 defmodule YetAnotherChatWeb.PageView do
   use YetAnotherChatWeb, :view
 
-  def put_is_author_field(message, conn) do
-    Map.put(message, "is_author", conn.assigns.user === message["author"])
+  def message_tag(message, conn) do
+    render("message.html", message: Map.put(message, "recipient", conn.assigns.user))
   end
 end

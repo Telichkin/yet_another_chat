@@ -14,8 +14,8 @@ defmodule YetAnotherChatWeb.PublicChannel do
         message = create_message(socket, text)
         MessageStorage.save(message)
         
-        broadcast!(socket, "new message", %{"author_html" => message_to_html(message, true),
-                                            "others_html" => message_to_html(message, false),
+        broadcast!(socket, "new message", %{"author_html" => message_to_html(message, is_author: true),
+                                            "others_html" => message_to_html(message, is_author: false),
                                             "author_name" => socket.assigns.user})
         {:noreply, socket}
     end
@@ -35,7 +35,11 @@ defmodule YetAnotherChatWeb.PublicChannel do
         %{"text" => text, "author" => socket.assigns.user, "time" => now}
     end
 
-    defp message_to_html(message, is_author) do
-        render_to_string(PageView, "message.html", %{message: Map.put(message, "is_author", is_author)})
+    defp message_to_html(message, is_author: is_author) do
+        recipient = case is_author do
+            true -> message["author"]
+            false -> nil
+        end
+        render_to_string(PageView, "message.html", %{message: Map.put(message, "recipient", recipient)})
     end
 end

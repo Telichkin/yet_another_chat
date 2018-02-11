@@ -11,7 +11,7 @@ defmodule YetAnotherChatWeb.PageViewTest do
     test "render today message if self is author", %{now: now} do
         {:ok, fixed_time, _} = DateTime.from_iso8601("#{now.year}-0#{now.month}-#{now.day} 10:00:02Z")
         fixed_time = DateTime.to_iso8601(fixed_time)
-        message = %{"text" => "Hello", "author" => "A", "time" => fixed_time, "is_author" => true}
+        message = %{"text" => "Hello", "author" => "A", "time" => fixed_time, "recipient" => "A"}
 
         rendered_string = render_to_string(PageView, "message.html", %{message: message})
 
@@ -22,7 +22,7 @@ defmodule YetAnotherChatWeb.PageViewTest do
     end
 
     test "render message if self is not author", %{now: now} do
-        message = %{"text" => "Hello", "author" => "A", "time" => now, "is_author" => false}
+        message = %{"text" => "Hello", "author" => "A", "time" => now, "recipient" => "B"}
 
         rendered_string = render_to_string(PageView, "message.html", %{message: message})
 

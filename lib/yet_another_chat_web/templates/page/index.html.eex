@@ -16,7 +16,7 @@
             </div>
             <div class="chat-room-messages" data-target="chat-room.allMessages">
                 <%= for message <- @messages do %>
-                    <%= render("message.html", message: put_is_author_field(message, @conn)) %>
+                    <%= message_tag(message, @conn)  %>
                 <% end %>
             </div>
             <div class="chat-room-input-container">

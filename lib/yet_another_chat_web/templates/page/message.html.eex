@@ -1,4 +1,4 @@
-<div class="message-container <%= if @message["is_author"], do: "my-message" %>">
+<div class="message-container <%= if @message["author"] == @message["recipient"], do: "my-message" %>">
     <div class="message">
         <div class="message-info">
             <span class="message-author"><%= @message["author"] %></span>
