@@ -7,13 +7,9 @@ defmodule YetAnotherChat.MessageStorage do
 
     def save(message), do: GenServer.call(@server, {:save, message})
 
-    def get_history() do
-        GenServer.call(@server, :history)
-    end
+    def get_history(), do: GenServer.call(@server, :history)
 
-    def drop_history() do
-        GenServer.call(@server, :drop_history)
-    end
+    def drop_history(), do: GenServer.call(@server, :drop_history)
 
     # Server
     def init([]) do

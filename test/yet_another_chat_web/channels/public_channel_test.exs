@@ -11,6 +11,23 @@ defmodule YetAnotherChatWeb.PublicChannelTest do
         {:ok, %{socket: socket}}
     end
 
+    test "update number of members on join" do
+        socket(nil, %{user: "Julia"})
+        |> subscribe_and_join(PublicChannel, "public_channel:lobby")
+
+        assert_broadcast("members", %{"count" => 2})
+    end
+
+    test "update number of members on disconnect" do
+        {:ok, _, socket} = socket(nil, %{user: "Julia"})
+        |> subscribe_and_join(PublicChannel, "public_channel:lobby")
+        assert_broadcast("members", %{"count" => 2})        
+
+        leave(socket)
+
+        assert_broadcast("members", %{"count" => 1})        
+    end
+
     test "can send message to the public channel", %{socket: socket} do
         push(socket, "new message", %{"text" => "Hello, World!"})
 

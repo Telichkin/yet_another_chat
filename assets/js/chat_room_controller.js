@@ -3,10 +3,11 @@ import Turbolinks from "turbolinks";
 import channel from "./chat";
 
 export default class extends Controller {
-    static targets = [ "message", "allMessages" ];
+    static targets = [ "message", "allMessages", "membersCount" ];
 
     connect() {
         this.listenNewMessages();
+        this.listenMembersCount();
         this.scrollToLastMessage();     
     }
 
@@ -43,5 +44,15 @@ export default class extends Controller {
 
     set message(text) {
         this.messageTarget.innerText = text;
+    }
+
+    listenMembersCount() {
+        channel.on("members", ({count: count}) => {
+            this.membersCount = count
+        })
+    }
+
+    set membersCount(count) {
+        this.membersCountTarget.innerText = `${count} members`
     }
 }

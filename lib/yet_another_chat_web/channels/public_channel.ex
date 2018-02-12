@@ -2,12 +2,15 @@ defmodule YetAnotherChatWeb.PublicChannel do
     use Phoenix.Channel
     alias YetAnotherChatWeb.PageView
     alias YetAnotherChat.MessageStorage
+    alias YetAnotherChat.UsersCounter
     import Phoenix.View, only: [render_to_string: 3]
     
     intercept ["new message"]
 
     def join("public_channel:" <> _, _msg, socket) do
-      {:ok, socket}
+        UsersCounter.add_user(socket.assigns.user)
+        send(self(), :after_join)
+        {:ok, socket}
     end
     
     def handle_in("new message", %{"text" => text}, socket) do
@@ -41,5 +44,15 @@ defmodule YetAnotherChatWeb.PublicChannel do
             false -> nil
         end
         render_to_string(PageView, "message.html", %{message: Map.put(message, "recipient", recipient)})
+    end
+
+    def handle_info(:after_join, socket) do
+        broadcast!(socket, "members", %{"count" => UsersCounter.count()})
+        {:noreply, socket}
+    end
+    
+    def terminate(_reason, socket) do
+        UsersCounter.delete_user(socket.assigns.user)
+        broadcast!(socket, "members", %{"count" => UsersCounter.count()})
     end
 end

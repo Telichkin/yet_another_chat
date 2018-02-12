@@ -8,6 +8,7 @@ defmodule YetAnotherChat.Application do
       supervisor(YetAnotherChat.Repo, []),
       supervisor(YetAnotherChatWeb.Endpoint, []),
       worker(YetAnotherChat.MessageStorage, []),
+      worker(YetAnotherChat.UsersCounter, []),
     ]
 
     opts = [strategy: :one_for_one, name: YetAnotherChat.Supervisor]

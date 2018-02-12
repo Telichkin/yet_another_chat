@@ -9,7 +9,7 @@
                     <div class="chat-room-name">
                         Lobby
                     </div>
-                    <div class="chat-room-members">
+                    <div class="chat-room-members" data-target="chat-room.membersCount">
                         1 member
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                             Lobby  
                         </div>
                         <div class="room-members">
-                            1 member
+                            1 members
                         </div>              
                     </div>
                 </div>

@@ -6,7 +6,7 @@ defmodule YetAnotherChatWeb.UserSocket do
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
-  # transport :longpoll, Phoenix.Transports.LongPoll
+  transport :longpoll, Phoenix.Transports.LongPoll
 
   def connect(%{"token" => token}, socket) do
     two_weeks_in_seconds = 1209600
