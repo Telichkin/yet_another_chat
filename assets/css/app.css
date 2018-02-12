@@ -18,12 +18,19 @@ h2.form-title {
 div.form-container {
     display: flex;
     flex-direction: column;
-    margin-top: 5%;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
 }
 
 div.form-container > form {
     padding: 0 20px;
     margin: 0 auto;
+    background: white;
+    border: 1px solid #d8dee2;
+    width: 300px;
 }
 
 div.form-group {
@@ -37,24 +44,29 @@ div.form-group > label {
 }
 
 div.form-group > input {
-    width: 300px;
+    width: 100%;
     padding: 5px;
+    box-sizing: border-box;
 }
 
 div.form-group > .btn {
     padding: 5px 10px;
 }
 
+div.form-group.form-button {
+    text-align: right;
+}
+
 .btn-primary {
-    background-color: #0366d6;
+    background-color: #5581a3;
     color: white;
-    border-color: #0366d6;
+    border-color: #5581a3;
 }
 
 .btn-primary:hover {
-    background-color: #1985ff;
+    background-color: #6a9abf;
     color: white;
-    border-color: #1985ff;
+    border-color: #6a9abf;
 }
 
 .alert {
@@ -67,6 +79,20 @@ div.form-group > .btn {
 .alert-error {
     color: #86181d;
     background-color: #ffdce0;
+}
+
+div.alternative-choice {
+    margin-top: 20px;
+    border: 1px solid #d8dee2;
+    padding: 20px 20px;
+    background: white;
+    width: 300px;
+    text-align: center;
+}
+
+div.alternative-choice > p {
+    margin: 5px 0 0 0;
+    padding: 0;
 }
 
 /****
@@ -88,6 +114,7 @@ div.chat {
     height: 90%;
     background: white;   
     overflow: auto; 
+    border: 1px solid #d8dee2;
 }
 
 section.chat-room {
@@ -202,8 +229,29 @@ div.settings {
     height: 52px;
     padding: 10px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+div.settings > .settings-logout {
+    display: block;
+    font-size: 85%;    
+}
+
+div.settings > .settings-enter {
+    font-size: 80%;
+    margin-top: 5px;
+}
+
+div.settings a {
+    color: white;
+    margin: 5px 0 0 0;
+    padding: 0;
+}
+
+div.settings a:visited {
+    color: white;
 }
 
 div.room-list {

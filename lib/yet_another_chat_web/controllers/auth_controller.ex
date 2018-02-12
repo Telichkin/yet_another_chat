@@ -37,5 +37,9 @@ defmodule YetAnotherChatWeb.AuthController do
     redirect(conn, to: page)
   end
 
-  def logout(conn, _), do: clear_session(conn)
+  def logout(conn, _) do
+    conn 
+    |> clear_session() 
+    |> redirect(to: page_path(YetAnotherChatWeb.Endpoint, :index))
+  end
 end

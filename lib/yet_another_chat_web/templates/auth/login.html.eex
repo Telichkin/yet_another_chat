@@ -1,8 +1,8 @@
 <div class="form-container">
-    <h2 class="form-title">Login</h2>    
     <%= form_for @conn, auth_path(@conn, :login), [name: :auth], fn(form) -> %>
+        <h2 class="form-title">Login</h2>            
         <div class="form-group">
-            <label>Login</label>
+            <label>Name or Email</label>
             <%= text_input(form, :login, class: "form-control") %>
         </div>
         <div class="form-group">
@@ -12,8 +12,13 @@
                 <span class="alert alert-error" role="alert"><%= @error %></span> 
             <% end %>               
         </div>
-        <div class="form-group">
+        <div class="form-group form-button">
             <%= submit("Login", class: "btn btn-primary") %>
         </div>
     <% end %>
+
+    <div class="alternative-choice">
+        New to Yet Another Chat? 
+        <p><a href="<%= auth_path(@conn, :register) %>">Create an account.</a></p>
+    </div>
 </div>

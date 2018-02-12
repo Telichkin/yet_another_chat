@@ -26,6 +26,13 @@
         <section class="info-board">
             <div class="settings">
                 Yet Another Chat
+                <%= if @conn.assigns.user === :anon do %>
+                    <div class="settings-enter">
+                        <a href="<%= auth_path(@conn, :login) %>">Enter the chat</a> or <a href="<%= auth_path(@conn, :register) %>">create a new account</a>
+                    </div>
+                <% else %>
+                    <%= link "Leave chat", to: auth_path(@conn, :logout), method: :post, class: "settings-logout" %>
+                <% end %>
             </div>
             <div class="room-list">
                 <div class="room room-selected">
