@@ -109,17 +109,5 @@ defmodule YetAnotherChatWeb.AuthControllerTest do
       assert html_response(conn, 200) =~ "Login"
       assert html_response(conn, 200) =~ "Password"      
     end
-
-    test "logged in user see href with logout", %{conn: conn} do
-      conn = post(conn, "/login", %{"login" => "Roman", "password" => "StrongPWD!"})
-      conn = get(conn, "/")
-      assert html_response(conn, 200) =~ "/logout"
-    end
-
-    test "not logged in user see hrefs with login and registration", %{conn: conn} do
-      conn = get(conn, "/")
-      assert html_response(conn, 200) =~ "/login"
-      assert html_response(conn, 200) =~ "/register"      
-    end
   end
 end

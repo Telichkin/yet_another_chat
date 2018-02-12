@@ -1,9 +1,11 @@
 defmodule YetAnotherChatWeb.PageController do
   use YetAnotherChatWeb, :controller
-  alias YetAnotherChat.MessageStorage
 
   def index(conn, _params) do
-    {:ok, messages} = MessageStorage.get_history()
-    render(conn, :index, %{messages: messages})
+    redirect(conn, to: page_path(conn, :show, "lobby"))
+  end
+
+  def show(conn, %{"name" => _name}) do
+    render(conn, :index)
   end
 end

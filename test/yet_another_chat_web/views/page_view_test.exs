@@ -13,7 +13,7 @@ defmodule YetAnotherChatWeb.PageViewTest do
         fixed_time = DateTime.to_iso8601(fixed_time)
         message = %{"text" => "Hello", "author" => "A", "time" => fixed_time, "recipient" => "A"}
 
-        rendered_string = render_to_string(PageView, "message.html", %{message: message})
+        rendered_string = render_to_string(PageView, "messages.html", %{messages: [message]})
 
         assert rendered_string =~ "<span class=\"message-author\">A</span>"
         assert rendered_string =~ "<span class=\"message-date\">#{fixed_time}</span>"
@@ -24,7 +24,7 @@ defmodule YetAnotherChatWeb.PageViewTest do
     test "render message if self is not author", %{now: now} do
         message = %{"text" => "Hello", "author" => "A", "time" => now, "recipient" => "B"}
 
-        rendered_string = render_to_string(PageView, "message.html", %{message: message})
+        rendered_string = render_to_string(PageView, "messages.html", %{messages: [message]})
 
         refute rendered_string =~ "my-message"
     end

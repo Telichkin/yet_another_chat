@@ -6,6 +6,7 @@ export default class extends Controller {
     static targets = [ "message", "allMessages", "membersCount" ];
 
     connect() {
+        this.listenMessageHistrory();
         this.listenNewMessages();
         this.listenMembersCount();
         this.scrollToLastMessage();     
@@ -18,10 +19,19 @@ export default class extends Controller {
         });
     }
     
+    listenMessageHistrory() {
+        channel.on("history", ({html: htmlHistory}) => {
+            this.appendMessage(htmlHistory);
+            this.scrollToLastMessage();
+        });
+    }
+
     appendMessage(htmlMessage) {
         let tempDiv = document.createElement("div");
         tempDiv.innerHTML = htmlMessage.trim();
-        this.allMessagesTarget.appendChild(tempDiv.firstChild);
+        for (let child of tempDiv.childNodes) {
+            this.allMessagesTarget.appendChild(child);
+        }
     }
 
     sendMessage(event) {

@@ -43,10 +43,21 @@ defmodule YetAnotherChatWeb.PublicChannel do
             true -> message["author"]
             false -> nil
         end
-        render_to_string(PageView, "message.html", %{message: Map.put(message, "recipient", recipient)})
+        render_to_string(
+            PageView,
+            "messages.html", 
+            %{messages: [Map.put(message, "recipient", recipient)]}
+        )
     end
 
     def handle_info(:after_join, socket) do
+        {:ok, messages} = MessageStorage.get_history()
+        history = messages
+            |> Enum.reduce([], fn(m, acc) -> [Map.put(m, "recipient", socket.assigns.user) | acc] end)
+            |> Enum.reverse()
+
+        payload = %{"html" => render_to_string(PageView, "messages.html", %{messages: history})}
+        push(socket, "history", payload)
         broadcast!(socket, "members", %{"count" => UsersCounter.count()})
         {:noreply, socket}
     end

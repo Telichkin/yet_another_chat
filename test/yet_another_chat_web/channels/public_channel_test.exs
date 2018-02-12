@@ -1,5 +1,5 @@
 defmodule YetAnotherChatWeb.PublicChannelTest do
-    use YetAnotherChatWeb.ChannelCase
+    use YetAnotherChatWeb.ChannelCase, async: false
     alias YetAnotherChatWeb.PublicChannel
     alias YetAnotherChat.MessageStorage
 
@@ -7,6 +7,8 @@ defmodule YetAnotherChatWeb.PublicChannelTest do
         {:ok, _, socket} = 
             socket(nil, %{user: "Roman"})
             |> subscribe_and_join(PublicChannel, "public_channel:lobby")
+        
+        assert_push("history", %{"html" => _})        
         :ok = MessageStorage.drop_history()
         {:ok, %{socket: socket}}
     end
@@ -16,6 +18,20 @@ defmodule YetAnotherChatWeb.PublicChannelTest do
         |> subscribe_and_join(PublicChannel, "public_channel:lobby")
 
         assert_broadcast("members", %{"count" => 2})
+    end
+
+    test "upload chat history on join", %{socket: socket} do
+        push(socket, "new message", %{"text" => "First"})
+        push(socket, "new message", %{"text" => "Second"})
+        assert_broadcast("new message", _)
+        assert_broadcast("new message", _)
+
+        socket(nil, %{user: "Julia"})
+        |> subscribe_and_join(PublicChannel, "public_channel:lobby")
+
+        assert_push("history", %{"html" => html})
+        assert html =~ "First"
+        assert html =~ "Second"        
     end
 
     test "update number of members on disconnect" do
@@ -35,18 +51,5 @@ defmodule YetAnotherChatWeb.PublicChannelTest do
         assert html =~ "Roman"
         assert html =~ "Hello, World"
         assert html =~ "<div class=\"message-container my-message\">"
-    end
-
-    test "save broadcasted messages", %{socket: socket, conn: conn} do
-        push(socket, "new message", %{"text" => "First Message"})
-        push(socket, "new message", %{"text" => "Second Message"})
-
-        assert_broadcast("new message", _)
-        assert_broadcast("new message", _)        
-
-        conn = get(conn, "/")
-
-        assert html_response(conn, 200) =~ "First Message"
-        assert html_response(conn, 200) =~ "Second Message"        
     end
 end

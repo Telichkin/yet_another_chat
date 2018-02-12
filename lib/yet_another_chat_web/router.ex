@@ -15,6 +15,7 @@ defmodule YetAnotherChatWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/chats/:name", PageController, :show
     
     get "/register", AuthController, :register    
     post "/register", AuthController, :register
