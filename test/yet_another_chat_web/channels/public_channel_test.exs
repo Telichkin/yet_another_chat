@@ -4,12 +4,12 @@ defmodule YetAnotherChatWeb.PublicChannelTest do
     alias YetAnotherChat.MessageStorage
 
     setup do
+        :ok = MessageStorage.drop_history()        
         {:ok, _, socket} = 
             socket(nil, %{user: "Roman"})
             |> subscribe_and_join(PublicChannel, "public_channel:lobby")
         
         assert_push("history", %{"html" => _})        
-        :ok = MessageStorage.drop_history()
         {:ok, %{socket: socket}}
     end
 

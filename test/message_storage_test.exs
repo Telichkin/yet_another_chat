@@ -4,13 +4,12 @@ defmodule YetAnotherChat.MessageStorageTest do
 
     setup do
         case MessageStorage.start_link() do
-            {:ok, _} ->
-                 :ok
+            {:ok, _} -> nil
             {:error, {:already_started, _}} ->
                 GenServer.stop(MessageStorage)
                 MessageStorage.start_link()
-                :ok
         end
+        MessageStorage.drop_history()
     end
 
     test "can save one message" do
@@ -25,11 +24,11 @@ defmodule YetAnotherChat.MessageStorageTest do
         {:ok, ["message 1", "message 2"]} = MessageStorage.get_history()
     end
 
-    test "drop all messages" do
-        :ok = MessageStorage.save("message")
-
-        :ok = MessageStorage.drop_history()
+    test "messages are available after storage restart" do
+        :ok = MessageStorage.save("message 1")
+        :ok = GenServer.stop(MessageStorage)
+        MessageStorage.start_link()
         
-        {:ok, []} = MessageStorage.get_history()
+        {:ok, ["message 1"]} = MessageStorage.get_history()
     end
 end
