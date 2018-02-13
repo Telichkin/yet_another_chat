@@ -1,6 +1,6 @@
 <div class="chat-container">
-    <div class="chat">
-        <section class="chat-room" data-controller="chat-room">
+    <div class="chat" data-controller="chat">
+        <section class="chat-room">
             <div class="chat-room-info">
                 <div class="chat-room-avatar">
                     <img src="<%= static_path(@conn, "/images/elixir.svg") %>"/>
@@ -9,15 +9,15 @@
                     <div class="chat-room-name">
                         Lobby
                     </div>
-                    <div class="chat-room-members" data-target="chat-room.membersCount">
-                        1 member
+                    <div class="chat-room-members" data-target="chat.membersCount">
+                        0 members
                     </div>
                 </div>
             </div>
-            <div class="chat-room-messages" data-target="chat-room.allMessages">
+            <div class="chat-room-messages" data-target="chat.allMessages">
             </div>
             <div class="chat-room-input-container">
-                <div class="chat-room-input" contenteditable data-target="chat-room.message" data-action="keypress->chat-room#sendMessage"></textarea>
+                <div class="chat-room-input" contenteditable data-target="chat.message" data-action="keypress->chat#sendMessage"></textarea>
             </div>
         </section>
         <section class="info-board">
@@ -40,8 +40,8 @@
                         <div class="room-name">
                             Lobby  
                         </div>
-                        <div class="room-members">
-                            1 members
+                        <div class="room-members" data-target="chat.membersCount">
+                            0 members
                         </div>              
                     </div>
                 </div>

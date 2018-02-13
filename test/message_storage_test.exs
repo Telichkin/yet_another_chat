@@ -10,6 +10,12 @@ defmodule YetAnotherChat.MessageStorageTest do
                 MessageStorage.start_link()
         end
         MessageStorage.drop_history()
+
+        on_exit fn -> 
+            MessageStorage.start_link()
+            MessageStorage.drop_history()
+            GenServer.stop(MessageStorage)
+         end
     end
 
     test "can save one message" do

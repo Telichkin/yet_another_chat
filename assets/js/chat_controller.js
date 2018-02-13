@@ -1,5 +1,4 @@
 import { Controller } from "stimulus";
-import Turbolinks from "turbolinks";
 import channel from "./chat";
 
 export default class extends Controller {
@@ -63,6 +62,8 @@ export default class extends Controller {
     }
 
     set membersCount(count) {
-        this.membersCountTarget.innerText = `${count} members`
+        this.membersCountTargets.forEach(membersCount => {
+            membersCount.innerText = count > 1 ? `${count} members` : `${count} member`
+        });
     }
 }

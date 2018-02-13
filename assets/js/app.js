@@ -4,8 +4,8 @@ import Turbolinks from "turbolinks";
 
 import socket from "./socket";
 
-import ChatRoomController from "./chat_room_controller";
+import ChatController from "./chat_controller";
 
 Turbolinks.start();
 const application = Application.start();
-application.register("chat-room", ChatRoomController);
+application.register("chat", ChatController);
