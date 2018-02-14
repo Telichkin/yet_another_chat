@@ -54,7 +54,6 @@ defmodule YetAnotherChatWeb.PublicChannel do
         {:ok, messages} = MessageStorage.get_history()
         history = messages
             |> Enum.reduce([], fn(m, acc) -> [Map.put(m, "recipient", socket.assigns.user) | acc] end)
-            |> Enum.reverse()
 
         payload = %{"html" => render_to_string(PageView, "messages.html", %{messages: history})}
         push(socket, "history", payload)

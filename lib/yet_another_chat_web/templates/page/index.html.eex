@@ -7,44 +7,32 @@
                 </div>
                 <div class="chat-room-title">
                     <div class="chat-room-name">
-                        Lobby
+                        Yet Another Chat
+                        <%= if @conn.assigns.user !== :anon do %>
+                            with 
+                            <span class="chat-room-members" data-target="chat.membersCount">
+                                0 members
+                            </span>
+                        <% end %> 
                     </div>
-                    <div class="chat-room-members" data-target="chat.membersCount">
-                        0 members
+                    <div class="logout">
+                        <%= if @conn.assigns.user !== :anon do %>
+                            <%= link "Leave the chat", to: auth_path(@conn, :logout), method: :post %>
+                        <% end %>  
                     </div>
                 </div>
             </div>
             <div class="chat-room-messages" data-target="chat.allMessages">
-            </div>
-            <div class="chat-room-input-container">
-                <div class="chat-room-input" contenteditable data-target="chat.message" data-action="keypress->chat#sendMessage"></textarea>
-            </div>
-        </section>
-        <section class="info-board">
-            <div class="settings">
-                Yet Another Chat
                 <%= if @conn.assigns.user === :anon do %>
-                    <div class="settings-enter">
+                    <div class="login">
                         <a href="<%= auth_path(@conn, :login) %>">Enter the chat</a> or <a href="<%= auth_path(@conn, :register) %>">create a new account</a>
                     </div>
-                <% else %>
-                    <%= link "Leave chat", to: auth_path(@conn, :logout), method: :post, class: "settings-logout" %>
                 <% end %>
             </div>
-            <div class="room-list">
-                <div class="room room-selected">
-                    <div class="room-avatar">
-                        <img src="<%= static_path(@conn, "/images/elixir.svg") %>"/>
-                    </div>
-                    <div class="room-title">
-                        <div class="room-name">
-                            Lobby  
-                        </div>
-                        <div class="room-members" data-target="chat.membersCount">
-                            0 members
-                        </div>              
-                    </div>
-                </div>
+            <div class="chat-room-input-container">
+                <%= if @conn.assigns.user !== :anon do %>    
+                    <div class="chat-room-input" contenteditable data-target="chat.message" data-action="keypress->chat#sendMessage"></textarea>
+                <% end %>    
             </div>
         </section>
     </div>

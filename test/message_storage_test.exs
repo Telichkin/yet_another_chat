@@ -32,9 +32,10 @@ defmodule YetAnotherChat.MessageStorageTest do
 
     test "messages are available after storage restart" do
         :ok = MessageStorage.save("message 1")
+        :ok = MessageStorage.save("message 2")
         :ok = GenServer.stop(MessageStorage)
         MessageStorage.start_link()
         
-        {:ok, ["message 1"]} = MessageStorage.get_history()
+        {:ok, ["message 1", "message 2"]} = MessageStorage.get_history()
     end
 end

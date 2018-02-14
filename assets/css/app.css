@@ -148,12 +148,6 @@ div.chat-room-name {
     text-align: center;
 }
 
-div.chat-room-members {
-    font-size: 85%;
-    color: #b9cfe3;
-    text-align: center;
-}
-
 div.chat-room-messages {
     flex: 1;
     padding: 10px;
@@ -212,88 +206,38 @@ div.chat-room-input:focus {
     outline: none;
 }
 
-[contenteditable=true]:empty:before{
-    content: attr(placeholder);
-    display: block;
-  }
-
 section.info-board {
     width: 250px;
     display: flex;
     flex-direction: column;
 }
 
-div.settings {
-    background: #5581a3;
-    color: white;
-    height: 52px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-div.settings > .settings-logout {
+.logout {
     display: block;
-    font-size: 85%;    
+    font-size: 85%;  
+    padding-top: 5px;  
+    text-align: center;
 }
 
-div.settings > .settings-enter {
-    font-size: 80%;
-    margin-top: 5px;
-}
-
-div.settings a {
+.logout a {
     color: white;
     margin: 5px 0 0 0;
     padding: 0;
 }
 
-div.settings a:visited {
-    color: white;
-}
-
-div.room-list {
-    border-left: 2px solid #E9EBED;
-    flex: 1;
-    overflow-y: scroll;
-}
-
-div.room {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 10px;
-    padding: 5px;
-    background: #f1f1f1;
-}
-
-div.room.room-selected {
-    border: 1px solid #5480a3;
-}
-
-div.room-avatar > img {
-    height: 24px;
-    margin-left: 5px;
-    margin-right: 10px;
-    border-radius: 50%;
-    background: white;
-}
-
-div.room-title {
-    margin: 0 auto;
-    font-size: 85%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-div.room-name {
+.login {
+    font-size: 93%;
     text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-div.room-members {
-    text-align: center;
-    font-size: 80%;
+.login a {
+    color: black;
+}
+
+.login a:visited {
+    color: black;
 }

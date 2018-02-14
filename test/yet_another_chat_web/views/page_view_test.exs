@@ -16,7 +16,7 @@ defmodule YetAnotherChatWeb.PageViewTest do
         rendered_string = render_to_string(PageView, "messages.html", %{messages: [message]})
 
         assert rendered_string =~ "<span class=\"message-author\">A</span>"
-        assert rendered_string =~ "<span class=\"message-date\">#{fixed_time}</span>"
+        assert rendered_string =~ fixed_time
         assert rendered_string =~ "Hello"
         assert rendered_string =~ "my-message"
     end

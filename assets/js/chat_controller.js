@@ -2,7 +2,7 @@ import { Controller } from "stimulus";
 import channel from "./chat";
 
 export default class extends Controller {
-    static targets = [ "message", "allMessages", "membersCount" ];
+    static targets = [ "message", "allMessages", "membersCount", "messageDate" ];
 
     connect() {
         this.listenMessageHistrory();
@@ -14,15 +14,35 @@ export default class extends Controller {
     listenNewMessages() {
         channel.on("new message", ({html: htmlMessage}) => {
             this.appendMessage(htmlMessage);
+            this.lastMessageDate = this.normalizeDateString(this.lastMessageDate)
             this.scrollToLastMessage();
         });
     }
     
+    get lastMessageDate() {
+        return this.messageDateTargets.slice(-1).pop().innerText;
+    }
+
+    set lastMessageDate(dateString) {
+        this.messageDateTargets.slice(-1).pop().innerText = dateString;
+    }
+
     listenMessageHistrory() {
         channel.on("history", ({html: htmlHistory}) => {
+            this.allMessagesTarget.innerHTML = "";
             this.appendMessage(htmlHistory);
+            this.messageDateTargets.forEach((date) => {
+                date.innerText = this.normalizeDateString(date.innerText);
+            })
             this.scrollToLastMessage();
         });
+    }
+
+    normalizeDateString(dateString) {
+        return new Date(dateString).toLocaleDateString("en-GB", {
+            year: "numeric", month: "2-digit", day: "2-digit", 
+            hour: "2-digit", minute: "2-digit"
+        })
     }
 
     appendMessage(htmlMessage) {
@@ -35,7 +55,8 @@ export default class extends Controller {
 
     sendMessage(event) {
         const enterPressed = event.keyCode === 13;
-        if (enterPressed) {
+        const shiftNotPressed = !event.shiftKey;
+        if (enterPressed && shiftNotPressed) {
             event.preventDefault();
             channel.push("new message", {text: this.message});
             this.message = "";
@@ -48,7 +69,7 @@ export default class extends Controller {
     }
 
     get message() {
-        return this.messageTarget.innerText;
+        return this.messageTarget.innerHTML;
     }
 
     set message(text) {
@@ -63,7 +84,7 @@ export default class extends Controller {
 
     set membersCount(count) {
         this.membersCountTargets.forEach(membersCount => {
-            membersCount.innerText = count > 1 ? `${count} members` : `${count} member`
+            membersCount.innerText = count > 1 ? `${count} members` : `only you`
         });
     }
 }
