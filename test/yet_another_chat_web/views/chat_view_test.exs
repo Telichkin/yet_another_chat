@@ -1,0 +1,31 @@
+defmodule Web.PageViewTest do
+    use Web.ConnCase, async: true
+    alias Web.ChatView
+
+    import Phoenix.View
+
+    setup do
+        {:ok, %{now: DateTime.utc_now()}}
+    end
+
+    test "render today message if self is author", %{now: now} do
+        {:ok, fixed_time, _} = DateTime.from_iso8601("#{now.year}-0#{now.month}-#{now.day} 10:00:02Z")
+        fixed_time = DateTime.to_iso8601(fixed_time)
+        message = %{"text" => "Hello", "author" => "A", "time" => fixed_time, "recipient" => "A"}
+
+        rendered_string = render_to_string(ChatView, "messages.html", %{messages: [message]})
+
+        assert rendered_string =~ "<span class=\"message-author\">A</span>"
+        assert rendered_string =~ fixed_time
+        assert rendered_string =~ "Hello"
+        assert rendered_string =~ "my-message"
+    end
+
+    test "render message if self is not author", %{now: now} do
+        message = %{"text" => "Hello", "author" => "A", "time" => now, "recipient" => "B"}
+
+        rendered_string = render_to_string(ChatView, "messages.html", %{messages: [message]})
+
+        refute rendered_string =~ "my-message"
+    end
+end

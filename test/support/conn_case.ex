@@ -1,4 +1,4 @@
-defmodule YetAnotherChatWeb.ConnCase do
+defmodule Web.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -19,17 +19,17 @@ defmodule YetAnotherChatWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      import YetAnotherChatWeb.Router.Helpers
+      import Web.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint YetAnotherChatWeb.Endpoint
+      @endpoint Web.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(YetAnotherChat.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Core.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(YetAnotherChat.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Core.Repo, {:shared, self()})
     end
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end

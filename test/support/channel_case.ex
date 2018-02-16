@@ -1,4 +1,4 @@
-defmodule YetAnotherChatWeb.ChannelCase do
+defmodule Web.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -22,14 +22,14 @@ defmodule YetAnotherChatWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint YetAnotherChatWeb.Endpoint
+      @endpoint Web.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(YetAnotherChat.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Core.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(YetAnotherChat.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Core.Repo, {:shared, self()})
     end
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end

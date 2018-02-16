@@ -1,4 +1,4 @@
-defmodule YetAnotherChat.Repo.Migrations.CreateUsers do
+defmodule Core.Repo.Migrations.CreateUsers do
   use Ecto.Migration
 
   def change do

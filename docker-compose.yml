@@ -2,12 +2,10 @@ chat:
   build: .
   ports:
     - "4000:4000"
-  command: mix do phx.server
+  command: mix phx.server
   environment:
     - MIX_ENV=prod
     - PORT=4000
-  volumes:
-    - .:/opt/app
   links:
     - db
 db:

@@ -1,4 +1,4 @@
-defmodule YetAnotherChat.Mixfile do
+defmodule Core.Mixfile do
   use Mix.Project
 
   def project do
@@ -19,7 +19,7 @@ defmodule YetAnotherChat.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {YetAnotherChat.Application, []},
+      mod: {Core.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

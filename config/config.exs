@@ -7,14 +7,14 @@ use Mix.Config
 
 # General application configuration
 config :yet_another_chat,
-  ecto_repos: [YetAnotherChat.Repo]
+  ecto_repos: [Core.Repo]
 
 # Configures the endpoint
-config :yet_another_chat, YetAnotherChatWeb.Endpoint,
+config :yet_another_chat, Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "A/k1oBKb3hc6Rzh7ZAqe9LohrhCCBMMrhLQRMVF3rAbOAmLHjYCSaho/aSIJyEFH",
-  render_errors: [view: YetAnotherChatWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: YetAnotherChat.PubSub,
+  render_errors: [view: Web.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: Core.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

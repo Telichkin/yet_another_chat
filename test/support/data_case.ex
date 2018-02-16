@@ -1,4 +1,4 @@
-defmodule YetAnotherChat.DataCase do
+defmodule Core.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,20 +16,20 @@ defmodule YetAnotherChat.DataCase do
 
   using do
     quote do
-      alias YetAnotherChat.Repo
+      alias Core.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import YetAnotherChat.DataCase
+      import Core.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(YetAnotherChat.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Core.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(YetAnotherChat.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Core.Repo, {:shared, self()})
     end
 
     :ok

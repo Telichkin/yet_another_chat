@@ -1,5 +1,5 @@
-defmodule YetAnotherChatWeb.AuthControllerTest do
-  use YetAnotherChatWeb.ConnCase, async: false
+defmodule Web.AuthControllerTest do
+  use Web.ConnCase, async: false
 
   describe "registration" do
     test "create a user with name, email and password", %{conn: conn} do

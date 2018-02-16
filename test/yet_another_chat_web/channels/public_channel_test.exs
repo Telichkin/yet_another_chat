@@ -1,7 +1,7 @@
-defmodule YetAnotherChatWeb.PublicChannelTest do
-    use YetAnotherChatWeb.ChannelCase, async: false
-    alias YetAnotherChatWeb.PublicChannel
-    alias YetAnotherChat.MessageStorage
+defmodule Web.PublicChannelTest do
+    use Web.ChannelCase, async: false
+    alias Web.PublicChannel
+    alias Core.MessageStorage
 
     setup do
         :ok = MessageStorage.drop_history()        

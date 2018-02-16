@@ -1,5 +1,5 @@
-defmodule YetAnotherChatWeb.UserControllerTest do
-    use YetAnotherChatWeb.ConnCase, async: false
+defmodule Web.UserControllerTest do
+    use Web.ConnCase, async: false
 
     test "anon can't open user page", %{conn: conn} do
         conn = get(conn, "/users/Roman")
