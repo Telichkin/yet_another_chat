@@ -1,0 +1,19 @@
+chat:
+  build: .
+  ports:
+    - "4000:4000"
+  command: mix do phx.server
+  environment:
+    - MIX_ENV=prod
+    - PORT=4000
+  volumes:
+    - .:/opt/app
+  links:
+    - db
+db:
+  image: postgres
+  environment:
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres
+    - POSTGRES_DB=yet_another_chat_prod
+    - POSTGRES_HOST=db

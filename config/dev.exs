@@ -54,5 +54,5 @@ config :yet_another_chat, YetAnotherChat.Repo,
   username: "postgres",
   password: "postgres",
   database: "yet_another_chat_dev",
-  hostname: "localhost",
+  hostname: "db",
   pool_size: 10
