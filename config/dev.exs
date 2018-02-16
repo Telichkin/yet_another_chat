@@ -36,8 +36,8 @@ config :yet_another_chat, Web.Endpoint,
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
-      ~r{lib/yet_another_chat_web/views/.*(ex)$},
-      ~r{lib/yet_another_chat_web/templates/.*(eex)$}
+      ~r{lib/web/views/.*(ex)$},
+      ~r{lib/web/views/.*(eex)$}
     ]
   ]
 
