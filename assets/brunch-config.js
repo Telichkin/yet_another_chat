@@ -52,7 +52,10 @@ exports.config = {
       plugins: ["transform-class-properties"],
       // Do not use ES6 compiler in vendor code
       ignore: [/vendor/]
-    }
+    },
+    uglify: {
+      mangle: false
+    },
   },
 
   modules: {
