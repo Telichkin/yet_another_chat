@@ -1,6 +1,6 @@
-defmodule Core.MessageStorageTest do
+defmodule YetAnotherChat.MessageStorageTest do
     use ExUnit.Case
-    alias Core.MessageStorage
+    alias YetAnotherChat.MessageStorage
 
     setup do
         case MessageStorage.start_link() do

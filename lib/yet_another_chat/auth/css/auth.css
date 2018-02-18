@@ -1,0 +1,84 @@
+h2.form-title {
+    text-align: center;
+    font-weight: 500;
+}
+
+div.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+div.form-container > form {
+    padding: 0 20px;
+    margin: 0 auto;
+    background: white;
+    border: 1px solid #d8dee2;
+    width: 300px;
+}
+
+div.form-group {
+    padding: 10px 0;
+}
+
+div.form-group > label {
+    display: block;
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+
+div.form-group > input {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+div.form-group > .btn {
+    padding: 5px 10px;
+}
+
+div.form-group.form-button {
+    text-align: right;
+}
+
+.btn-primary {
+    background-color: #5581a3;
+    color: white;
+    border-color: #5581a3;
+}
+
+.btn-primary:hover {
+    background-color: #6a9abf;
+    color: white;
+    border-color: #6a9abf;
+}
+
+.alert {
+    display: block;
+    font-size: 85%;
+    padding: 9px;
+    margin-top: 5px;
+}
+
+.alert-error {
+    color: #86181d;
+    background-color: #ffdce0;
+}
+
+div.alternative-choice {
+    margin-top: 20px;
+    border: 1px solid #d8dee2;
+    padding: 20px 20px;
+    background: white;
+    width: 300px;
+    text-align: center;
+}
+
+div.alternative-choice > p {
+    margin: 5px 0 0 0;
+    padding: 0;
+}

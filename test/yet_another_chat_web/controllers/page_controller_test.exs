@@ -1,5 +1,5 @@
-defmodule Web.PageControllerTest do
-  use Web.ConnCase, async: false
+defmodule YetAnotherChat.PageControllerTest do
+  use YetAnotherChat.ConnCase, async: false
 
   setup %{conn: conn} = meta do
     post(conn, "/register", %{"name" => "Roman", "email" => "some@mail.com", "password" => "StrongPWD!"})

@@ -1,0 +1,43 @@
+{
+  "repository": {},
+  "license": "MIT",
+  "scripts": {
+    "precopy:static": "rm -rf priv/static",    
+    "copy:static": "cp -r assets/static priv/",
+
+    "build:js": "browserify lib/application.js --outfile priv/static/js/application.js",
+
+    "prebuild:css": "mkdir priv/static/css && cp -r lib/application.css priv/static/css/application.css",
+    "build:css": "cat lib/yet_another_chat/auth/css/auth.css >> priv/static/css/application.css && cat lib/yet_another_chat/chat/css/chat.css >> priv/static/css/application.css && cat lib/yet_another_chat/chat/css/messages.css >> priv/static/css/application.css",
+
+    "build": "npm run copy:static && npm run build:js && npm run build:css"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "env"
+          ],
+          "plugins": [
+            "transform-class-properties"
+          ]
+        }
+      ]
+    ]
+  },
+  "dependencies": {
+    "phoenix": "file:deps/phoenix",
+    "phoenix_html": "file:deps/phoenix_html",
+    "stimulus": "^1.0.1",
+    "turbolinks": "^5.1.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
+    "browserify": "^16.1.0"
+  }
+}

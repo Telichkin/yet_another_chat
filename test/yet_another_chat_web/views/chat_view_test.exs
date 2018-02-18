@@ -1,6 +1,6 @@
-defmodule Web.PageViewTest do
-    use Web.ConnCase, async: true
-    alias Web.ChatView
+defmodule YetAnotherChat.PageViewTest do
+    use YetAnotherChat.ConnCase, async: true
+    alias YetAnotherChat.ChatView
 
     import Phoenix.View
 

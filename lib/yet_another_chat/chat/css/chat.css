@@ -1,0 +1,106 @@
+div.chat-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+div.chat {
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+    background: white;   
+    overflow: auto; 
+    border: 1px solid #d8dee2;
+}
+
+section.chat-room {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+}
+
+div.chat-room-info {
+    display: flex;
+    height: 52px;
+    padding: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #5581a3;
+    color: white;
+}
+
+div.chat-room-avatar > img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: white;
+}
+
+div.chat-room-title {
+    margin: 0 auto;
+}
+
+div.chat-room-name {
+    text-align: center;
+}
+
+div.chat-room-input-container {
+    margin: 0 10px 10px 10px;
+}
+
+div.chat-room-input {
+    width: 100%;
+    margin: 0;
+    border: none;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #f7f7f7;   
+    max-height: 200px;
+    resize: none;
+    overflow-x: auto;
+    font-size: 90%;
+}
+
+div.chat-room-input:focus {
+    outline: none;
+}
+
+section.info-board {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logout {
+    display: block;
+    font-size: 85%;  
+    padding-top: 5px;  
+    text-align: center;
+}
+
+.logout a {
+    color: white;
+    margin: 5px 0 0 0;
+    padding: 0;
+}
+
+.login {
+    font-size: 93%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login a {
+    color: black;
+}
+
+.login a:visited {
+    color: black;
+}

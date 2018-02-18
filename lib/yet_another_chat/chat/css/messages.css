@@ -1,0 +1,36 @@
+div.chat-room-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+div.message-container {
+    display: flex;
+}
+
+div.message-container.my-message {
+    flex-direction: row-reverse;
+}
+
+div.message {
+    padding: 10px;
+    margin: 5px 0;
+    display: inline-block;
+    max-width: 85%;
+    font-size: 93%;
+}
+
+div.message-info {
+    margin-bottom: 5px;
+}
+
+span.message-author {
+    font-size: 90%;  
+    color: #414b50;
+}
+
+span.message-date {
+    font-size: 75%;
+    margin-left: 3px;
+    color: #5f5f5f;
+}

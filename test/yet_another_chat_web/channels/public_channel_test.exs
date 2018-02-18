@@ -1,13 +1,13 @@
-defmodule Web.PublicChannelTest do
-    use Web.ChannelCase, async: false
-    alias Web.PublicChannel
-    alias Core.MessageStorage
+defmodule YetAnotherChat.PublicChannelTest do
+    use YetAnotherChat.ChannelCase, async: false
+    alias YetAnotherChat.PublicChat
+    alias YetAnotherChat.MessageStorage
 
     setup do
         :ok = MessageStorage.drop_history()        
         {:ok, _, socket} = 
             socket(nil, %{user: "Roman"})
-            |> subscribe_and_join(PublicChannel, "public_channel:lobby")
+            |> subscribe_and_join(PublicChat, "public_channel:lobby")
         
         assert_push("history", %{"html" => _})        
         {:ok, %{socket: socket}}
@@ -15,7 +15,7 @@ defmodule Web.PublicChannelTest do
 
     test "update number of members on join" do
         socket(nil, %{user: "Julia"})
-        |> subscribe_and_join(PublicChannel, "public_channel:lobby")
+        |> subscribe_and_join(PublicChat, "public_channel:lobby")
 
         assert_broadcast("members", %{"count" => 2})
     end
@@ -27,7 +27,7 @@ defmodule Web.PublicChannelTest do
         assert_broadcast("new message", _)
 
         socket(nil, %{user: "Julia"})
-        |> subscribe_and_join(PublicChannel, "public_channel:lobby")
+        |> subscribe_and_join(PublicChat, "public_channel:lobby")
 
         assert_push("history", %{"html" => html})
         assert html =~ "First"
@@ -36,7 +36,7 @@ defmodule Web.PublicChannelTest do
 
     test "update number of members on disconnect" do
         {:ok, _, socket} = socket(nil, %{user: "Julia"})
-        |> subscribe_and_join(PublicChannel, "public_channel:lobby")
+        |> subscribe_and_join(PublicChat, "public_channel:lobby")
         assert_broadcast("members", %{"count" => 2})        
 
         leave(socket)

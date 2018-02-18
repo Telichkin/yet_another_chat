@@ -1,4 +1,4 @@
-defmodule Core.Repo.Migrations.AddNameConstraint do
+defmodule YetAnotherChat.Repo.Migrations.AddNameConstraint do
   use Ecto.Migration
 
   def change do
