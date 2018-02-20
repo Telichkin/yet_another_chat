@@ -2,12 +2,15 @@
   "repository": {},
   "license": "MIT",
   "scripts": {
-    "precopy:static": "rm -rf priv/static",
-    "copy:static": "cp -r assets/static priv/",
-    "build:js": "browserify lib/application.js --outfile priv/static/js/application.js",
-    "prebuild:css": "mkdir priv/static/css",
-    "build:css": "stylus lib/application.styl -o priv/static/css/application.css",
-    "build": "npm run copy:static && npm run build:js && npm run build:css"
+    "clean": "rm -rf priv/static && mkdir priv/static && mkdir priv/static/dist",
+    "build:static": "cp -r static/* priv/static",
+    "watch:static": "onchange 'static/*' -- npm run build:static",
+    "build:js": "browserify lib/application.js > priv/static/dist/application.js",
+    "watch:js": "onchange 'lib/**/*.js' -- npm run build:js",
+    "build:css": "stylus lib/application.styl -o priv/static/dist/application.css",
+    "watch:css": "onchange 'lib/**/*.styl' -- npm run build:css",
+    "build": "npm run clean && npm run build:static && npm run build:js && npm run build:css",
+    "watch:build": "parallelshell 'npm run watch:static' 'npm run watch:js' 'npm run watch:css'"
   },
   "browserify": {
     "transform": [
@@ -36,6 +39,8 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babelify": "^8.0.0",
-    "browserify": "^16.1.0"
+    "browserify": "^16.1.0",
+    "onchange": "^3.3.0",
+    "parallelshell": "^3.0.2"
   }
 }

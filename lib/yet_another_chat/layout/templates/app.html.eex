@@ -9,8 +9,8 @@
 
     <title>Yet Another Chat</title>
 
-    <script src="<%= static_path(@conn, "/js/application.js") %>" defer></script>    
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/application.css") %>">
+    <script src="<%= static_path(@conn, "/dist/application.js") %>" defer></script>    
+    <link rel="stylesheet" href="<%= static_path(@conn, "/dist/application.css") %>">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=cyrillic" rel="stylesheet">
   </head>
 
